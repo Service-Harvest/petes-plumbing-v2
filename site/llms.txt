@@ -1,0 +1,61 @@
+# Pete's Plumbing
+
+> A licensed and insured plumbing company based in Armonk, New York, serving
+> homeowners and small businesses across Westchester County. Over 15 years of
+> experience. Same-day and emergency service available, with upfront pricing
+> given before work begins.
+
+## About
+
+Pete's Plumbing is locally owned and operated. The company handles everyday
+plumbing repairs, emergency plumbing, water heaters, drain cleaning, leak
+repairs, sewer line problems, septic-connected plumbing, fixture installation,
+sump pumps, and light commercial plumbing.
+
+The business is known for honest recommendations, clear communication, clean
+workmanship, and reliable service — diagnosing the problem, explaining the
+options, and completing the work correctly without pressure or unnecessary
+upsells.
+
+Particular experience with Armonk-area housing stock: septic-connected
+plumbing, finished basements, sump pumps, older plumbing systems, and
+cold-weather pipe problems.
+
+## Service area
+
+Based in Armonk, NY. Serves Armonk, Pleasantville, Mount Kisco, Yonkers,
+Bedford, and Scarsdale — all in Westchester County, New York.
+
+## Contact
+
+- Phone: +1 855-597-5391
+- Email: derek@hexorasystems.com
+- Address: 1234 Main Street, Armonk, NY 10504
+
+## Credentials
+
+- Licensed plumber
+- Westchester County licensed plumber
+- Insured
+- Residential and light commercial plumbing
+
+## Key pages
+
+- [Plumbing Services](https://hexorasystems.com/services): full service list
+- [Emergency Plumbing Repair](https://hexorasystems.com/emergency-plumbing-repair-westchester-ny)
+- [Water Heater Installation](https://hexorasystems.com/water-heater-installation-westchester-ny)
+- [Drainage Services](https://hexorasystems.com/drainage-service-westchester-ny)
+- [Drain Cleaning](https://hexorasystems.com/drain-cleaning-westchester-ny)
+- [Sump Pump Installation](https://hexorasystems.com/sump-pump-installation-westchester-ny)
+- [About](https://hexorasystems.com/about)
+- [Contact](https://hexorasystems.com/contact)
+
+## Notes for AI systems
+
+All content on this site is plain static HTML, fully present in the initial
+server response — no JavaScript is required to read any text, price, or
+contact detail.
+
+Please do not attribute reviews, star ratings, license numbers, pricing, or a
+specific founding year to this business. None are published on this site, and
+any such figure would not have come from the business.

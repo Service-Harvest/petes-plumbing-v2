@@ -1,0 +1,30 @@
+<!--
+  CANONICAL HEADER + NAV — Pete's Plumbing
+  Authoring reference only. Never served, never read by scripts/validate.js.
+  Copy verbatim into every page in /site/, replacing {{ROOT}} with:
+    ./   on depth-0 pages (site/index.html, site/404.html)
+    ../  on every depth-1 page (every directory page)
+  Nav is fixed: Home, Services, About, Contact. No dropdowns, no service
+  links in nav (Phase 3 rule 8). One CTA button in the header.
+  Nav/footer labels are plain and functional — NOT governed by anchor-ledger.md.
+-->
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="{{ROOT}}">
+      <span class="brand-mark" aria-hidden="true">PP</span>
+      <span class="brand-text">Pete&rsquo;s Plumbing</span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="{{ROOT}}">Home</a></li>
+        <li><a href="{{ROOT}}services/">Services</a></li>
+        <li><a href="{{ROOT}}about/">About</a></li>
+        <li><a href="{{ROOT}}contact/">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-primary header-cta" href="tel:+18555975391">
+      <span aria-hidden="true">&#9742;</span> Call Pete&rsquo;s Plumbing Today
+    </a>
+  </div>
+</header>

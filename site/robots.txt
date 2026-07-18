@@ -1,0 +1,32 @@
+# robots.txt — hexorasystems.com (Pete's Plumbing)
+
+User-agent: *
+Allow: /
+
+# ---------------------------------------------------------------
+# AI crawler policy — DELIBERATE DECISION, not a default.
+#
+# This site's primary organic strategy is earning citations in
+# AI-generated answers. Research for this build found that AI answers
+# for this market cite business websites directly and skip the
+# directories entirely, and that AI Overviews are present on the
+# target geography's SERP. Blocking these crawlers would forfeit the
+# single best channel available to this business.
+#
+# All four are therefore explicitly ALLOWED. Revisit only if the
+# client's position on AI training use changes.
+# ---------------------------------------------------------------
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://hexorasystems.com/sitemap.xml

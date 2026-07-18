@@ -1,0 +1,74 @@
+name: Validate and Deploy to GitHub Pages
+
+# Reusable across every client repo built from this template (see
+# pipeline/phase-04-repo-scaffold.md Task 14 and pipeline/phase-13-deploy.md).
+# GitHub Pages' native branch/folder settings only support "/" or "/docs" as
+# a source folder — this workflow deploys the arbitrary "/site/" folder via
+# GitHub's official Pages Actions instead, and runs scripts/validate.js as a
+# hard gate before anything is published.
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run build validation gate
+        run: node scripts/validate.js
+
+  deploy:
+    needs: validate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site as Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Ping IndexNow
+        # Uses the key file + domain committed as part of /site/ (see
+        # pipeline/phase-11-sitemap-technical.md). Safe to no-op on repos
+        # that haven't reached Phase 11 yet (e.g. very first scaffold push).
+        run: |
+          if [ ! -f site/indexnow-key.txt ] || [ ! -f site/CNAME ] || [ ! -f site/sitemap.xml ]; then
+            echo "IndexNow key, CNAME, or sitemap.xml not present yet — skipping ping."
+            exit 0
+          fi
+          DOMAIN=$(cat site/CNAME | tr -d '[:space:]')
+          KEY=$(cat site/indexnow-key.txt | tr -d '[:space:]')
+          URLS=$(grep -oP '(?<=<loc>)[^<]+' site/sitemap.xml | jq -R . | jq -s .)
+          curl -s -o /dev/null -w "IndexNow ping status: %{http_code}\n" -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "{\"host\":\"${DOMAIN}\",\"key\":\"${KEY}\",\"keyLocation\":\"https://${DOMAIN}/indexnow-key.txt\",\"urlList\":${URLS}}"
