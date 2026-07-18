@@ -119,6 +119,7 @@ Nav/footer/header links are excluded by design (Golden Rule 5).
 | `/commercial-plumbing-westchester-ny` | `/backflow-testing-westchester-ny` | annual backflow certification | Related services, mid-page |
 | `/drain-cleaning-westchester-ny` | `/hydro-jetting-westchester-ny` | when jetting is the better option | Related services, mid-page |
 | `/drain-cleaning-westchester-ny` | `/sewer-camera-inspection-westchester-ny` | seeing inside the line | Related services, mid-page |
+| `/drain-cleaning-westchester-ny` | `/services` | everything from fixtures to sewer lines | "When it isn't a clog" closing paragraph (added Phase 6) |
 | `/hydro-jetting-westchester-ny` | `/drain-cleaning-westchester-ny` | routine drain clearing | Related services, mid-page |
 | `/sewer-line-repair-westchester-ny` | `/sewer-camera-inspection-westchester-ny` | inspecting before we dig | Related services, mid-page |
 | `/sewer-camera-inspection-westchester-ny` | `/sewer-line-repair-westchester-ny` | repairs once we find the break | Related services, mid-page |
