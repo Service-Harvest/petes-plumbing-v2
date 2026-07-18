@@ -59,6 +59,22 @@ be stretched to match. Judge length by whether every sentence is still
 earning its place, not by the target number alone — the reading-level and
 "one idea per paragraph" rules above still apply at any length.
 
+**Length tracks the page's research tier, and that's by design.** Phase 5
+researches Tier 1 pages (homepage + Phase 3's priority picks) in full and Tier 3
+general service pages lightly, on purpose — see the tiering table in
+`phase-05-per-page-research.md`. Tier 1 pages have competitor-gap findings and
+per-page AI-visibility research behind them, so they genuinely support the upper
+end of the range. Tier 3 pages usually land nearer the lower end, and that is the
+correct outcome, not a shortfall to correct.
+
+Do **not** pad a Tier 3 page to Tier 1 length. A shorter page that is accurate,
+locally specific, and non-redundant has met the bar; a longer one padded with
+filler to match a word count has failed it, and thin me-too content is exactly
+what the redundancy check in Phase 5 exists to prevent. Equally, "lighter
+research" is never licence for generic copy — every Tier 3 page still needs its
+own angle, checked against `/ledgers/content-ledger.md`, in the client's voice,
+with no invented facts.
+
 Homepage follows the same spirit but with its own structure: hero, why-choose-
 us (4 differentiators, drawn from the intake's unique selling points), reviews
 placeholder (no invented review data), homepage-linked priority sections
