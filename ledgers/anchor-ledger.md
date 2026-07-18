@@ -84,6 +84,7 @@ Nav/footer/header links are excluded by design (Golden Rule 5).
 | `/emergency-plumbing-repair-westchester-ny` | `/burst-pipe-repair-westchester-ny` | a pipe that lets go suddenly | Related services, mid-page |
 | `/emergency-plumbing-repair-westchester-ny` | `/frozen-pipe-repair-westchester-ny` | winter pipe failures | Related services, mid-page |
 | `/emergency-plumbing-repair-westchester-ny` | `/water-main-repair-westchester-ny` | a break in the main line | Related services, mid-page |
+| `/emergency-plumbing-repair-westchester-ny` | `/services` | everything else we take care of | Process section, closing paragraph (added Phase 6) |
 | `/water-heater-installation-westchester-ny` | `/water-heater-repair-westchester-ny` | repairing the heater you already have | Related services, mid-page |
 | `/water-heater-installation-westchester-ny` | `/tankless-water-heater-installation-westchester-ny` | going tankless instead | Related services, mid-page |
 | `/water-heater-repair-westchester-ny` | `/water-heater-installation-westchester-ny` | replacing a heater past saving | Related services, mid-page |
