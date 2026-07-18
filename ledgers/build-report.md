@@ -89,5 +89,48 @@ later, and is recorded here so that decision isn't re-derived from scratch.
 ## Content Quality Notes
 (Notable QA findings from Phase 8, per page)
 
+## Design System Notes (Phase 4a)
+
+**Palette** — no brand colors were supplied, so the palette was derived from the
+intake's "overall feel" text. Deep utility blue `#0b4f6c` (trust, the plumbing
+category convention) with a warm clay `#b23c07` reserved exclusively for CTAs and
+urgency. All pairings verified WCAG AA or better; ratios are documented inline at
+the top of `site/assets/css/main.css`.
+
+**Typography** — single system-font stack, so there are zero webfont requests and
+nothing render-blocking but the one stylesheet. Headings differentiated from body
+by weight (700–800) and negative letter-spacing rather than color.
+
+**Open Graph image convention (Task 3)** — each page's hero/LCP image doubles as
+its OG image at 1200×630. Phase 7 must generate that specific slot at those
+dimensions for every page type:
+
+| Page type | OG image slot | Filename pattern |
+|---|---|---|
+| Homepage | Hero image | `og-home.webp` |
+| Category | Category hero | `og-[category-slug].webp` |
+| Service | Service hero | `og-[service-slug].webp` |
+| About | Team/business hero | `og-about.webp` |
+| Contact | Exterior/service-vehicle hero | `og-contact.webp` |
+
+The Phase 4 page template's `og:image` / `twitter:image` tags already point at
+`https://hexorasystems.com/assets/img/{{OG_IMAGE}}` — absolute, per the
+absolute-vs-relative rule.
+
 ## Image Notes
 (Generated vs. substituted images, from Phase 7)
+
+**Favicon set (Phase 4a Task 2) — GENERATED PLACEHOLDER, flag in Phase 13 report.**
+No logo file was provided; the client's instruction was "make one up." Generated
+via Gemini (`scripts/generate-image.js`): a flat blue water droplet enclosing a
+clay-orange wrench, matching the Task 1 palette. The first generation had margins
+too generous to read at small sizes, so it was center-cropped to ~58% and
+re-derived. Verified legible at 32×32.
+
+Shipped set: `favicon-16.png`, `favicon-32.png`, `favicon-192.png`,
+`favicon-512.png`, `apple-touch-icon.png` (180×180). PNG-only — the template's
+`favicon.svg` reference was removed rather than left pointing at a file that
+doesn't exist, which would have 404'd on every page.
+
+**This is not a substitute for a real brand mark.** The client should replace it
+once a logo exists.
