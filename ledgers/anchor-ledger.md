@@ -8,8 +8,10 @@
 > `scripts/validate.js` parses this table directly.
 
 Seeded 2026-07-18 against the approved 46-page architecture with the corrected
-**Westchester County** geo-target. 116 entries, all anchor strings verified unique.
-Nav/footer/header links are excluded by design (Golden Rule 5).
+**Westchester County** geo-target, then extended during Phase 6 as pages were
+drafted. Nav/footer/header links are excluded by design (Golden Rule 5).
+Anchor-text uniqueness is re-verified programmatically after every addition —
+do not trust the count in this header alone, re-run the check.
 
 | Source Page | Destination Page | Anchor Text | Placement Note |
 |---|---|---|---|
@@ -136,3 +138,7 @@ Nav/footer/header links are excluded by design (Golden Rule 5).
 | `/about` | `/services` | what we actually do day to day | Body copy, mid-page |
 | `/about` | `/emergency-plumbing-repair-westchester-ny` | how we handle emergency calls | Body copy, mid-page |
 | `/contact` | `/emergency-plumbing-repair-westchester-ny` | urgent plumbing that can't wait | Body copy, above form |
+| `/septic-system-service-westchester-ny` | `/services` | the plumbing services we offer county-wide | "Which part is a plumber's job" closing (added Phase 6) |
+| `/gasfitter-westchester-ny` | `/services` | our other plumbing work | "The gas work we handle" closing (added Phase 6) |
+| `/bathroom-remodeler-westchester-ny` | `/services` | everything else we get called out for | Scope paragraph, "The bathroom work we handle" (added Phase 6) |
+| `/water-damage-restoration-westchester-ny` | `/services` | the plumbing repairs we handle | "The repairs we handle" closing (added Phase 6) |
