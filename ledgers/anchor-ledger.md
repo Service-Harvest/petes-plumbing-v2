@@ -121,6 +121,8 @@ Nav/footer/header links are excluded by design (Golden Rule 5).
 | `/sewer-line-repair-westchester-ny` | `/sewer-camera-inspection-westchester-ny` | inspecting before we dig | Related services, mid-page |
 | `/sewer-camera-inspection-westchester-ny` | `/sewer-line-repair-westchester-ny` | repairs once we find the break | Related services, mid-page |
 | `/sump-pump-installation-westchester-ny` | `/frozen-pipe-repair-westchester-ny` | cold-weather plumbing problems | Related services, mid-page |
+| `/sump-pump-installation-westchester-ny` | `/drain-cleaning-westchester-ny` | drains that back up during the same storms | Process section (added Phase 6) |
+| `/sump-pump-installation-westchester-ny` | `/services` | other plumbing jobs we take on | Cost section, closing paragraph (added Phase 6) |
 | `/septic-tank-service-westchester-ny` | `/sewer-line-repair-westchester-ny` | line repairs between house and tank | Related services, mid-page |
 | `/gas-line-repair-westchester-ny` | `/boiler-installation-westchester-ny` | gas-fired boiler work | Related services, mid-page |
 | `/bathroom-plumbing-remodeling-westchester-ny` | `/shower-valve-replacement-westchester-ny` | valve work behind the wall | Related services, mid-page |
