@@ -148,6 +148,31 @@ forbes.com, nytimes.com, washingtonpost.com, apnews.com, reuters.com.
    functional, and are not subject to this ledger.
 6. Never use the brand name as anchor text.
 
+### Anchor text must match the ledger *character for character*
+
+`scripts/validate.js` confirms each ledger row by looking for its anchor string
+inside the source page's body copy. That check is literal, so an anchor that
+reads correctly to a human can still fail:
+
+- **Sentence-start capitalisation.** A ledger entry of `gas-fired boiler work`
+  written into the page as "Gas-fired boiler work" at the start of a sentence
+  will not match. Rewrite the sentence so the anchor sits mid-sentence — a colon
+  or em-dash before it usually reads better anyway — rather than capitalising
+  the anchor or editing the ledger to match the capitalised form.
+- **HTML entities.** Curly quotes and apostrophes written as `&rsquo;`, `&amp;`,
+  or `&mdash;` inside anchor text will not match a plain-text ledger entry.
+  Keep anchor text free of entities entirely; if the natural phrasing needs an
+  apostrophe or ampersand, choose different phrasing for the anchor.
+- **Line breaks inside the anchor.** Wrapping a long anchor across two source
+  lines inserts a newline and extra indentation into the string. Keep the whole
+  `<a>…</a>` on one line, however long that line gets.
+
+Both of the first two failures occurred in real builds. Check every anchor
+against the ledger programmatically after drafting each page rather than by eye
+— a simple "is this exact string present in this file" test over every ledger
+row catches all three cases in seconds, and catching them at draft time is far
+cheaper than debugging a Phase 12 gate failure dozens of pages later.
+
 ## Content ledger (cross-page redundancy prevention)
 Before drafting each page, check `/ledgers/content-ledger.md` for which local
 details, angles, and phrasings have already been used on other pages (e.g.,
