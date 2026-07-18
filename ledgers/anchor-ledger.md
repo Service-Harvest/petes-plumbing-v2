@@ -87,6 +87,8 @@ Nav/footer/header links are excluded by design (Golden Rule 5).
 | `/emergency-plumbing-repair-westchester-ny` | `/services` | everything else we take care of | Process section, closing paragraph (added Phase 6) |
 | `/water-heater-installation-westchester-ny` | `/water-heater-repair-westchester-ny` | repairing the heater you already have | Related services, mid-page |
 | `/water-heater-installation-westchester-ny` | `/tankless-water-heater-installation-westchester-ny` | going tankless instead | Related services, mid-page |
+| `/water-heater-installation-westchester-ny` | `/gas-line-repair-westchester-ny` | upsizing the gas line to suit it | Tank-or-tankless section (added Phase 6) |
+| `/water-heater-installation-westchester-ny` | `/services` | the other work we handle in Westchester homes | Cost section, closing paragraph (added Phase 6) |
 | `/water-heater-repair-westchester-ny` | `/water-heater-installation-westchester-ny` | replacing a heater past saving | Related services, mid-page |
 | `/tankless-water-heater-installation-westchester-ny` | `/water-heater-installation-westchester-ny` | a conventional tank setup | Related services, mid-page |
 | `/boiler-installation-westchester-ny` | `/water-heater-installation-westchester-ny` | separate water heater work | Related services, mid-page |
