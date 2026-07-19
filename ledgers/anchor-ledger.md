@@ -98,7 +98,7 @@ do not trust the count in this header alone, re-run the check.
 | `/boiler-installation-westchester-ny` | `/gas-line-repair-westchester-ny` | the gas line feeding it | Related services, mid-page |
 | `/leak-detection-westchester-ny` | `/slab-leak-repair-westchester-ny` | leaks below the slab | Related services, mid-page |
 | `/leak-detection-westchester-ny` | `/pipe-repair-westchester-ny` | repairing the pipe once we find it | Related services, mid-page |
-| `/slab-leak-repair-westchester-ny` | `/leak-detection-westchester-ny` | locating a leak you can't see | Related services, mid-page |
+| `/slab-leak-repair-westchester-ny` | `/leak-detection-westchester-ny` | pinpointing where the water is escaping | Related services, mid-page |
 | `/pipe-repair-westchester-ny` | `/repiping-westchester-ny` | when patching is no longer enough | Related services, mid-page |
 | `/repiping-westchester-ny` | `/pipe-repair-westchester-ny` | single-section pipe repairs | Related services, mid-page |
 | `/burst-pipe-repair-westchester-ny` | `/emergency-plumbing-repair-westchester-ny` | after-hours emergency response | Related services, mid-page |
@@ -137,7 +137,7 @@ do not trust the count in this header alone, re-run the check.
 | `/shower-valve-replacement-westchester-ny` | `/bathroom-plumbing-remodeling-westchester-ny` | a larger bathroom plumbing project | Related services, mid-page |
 | `/about` | `/services` | what we actually do day to day | Body copy, mid-page |
 | `/about` | `/emergency-plumbing-repair-westchester-ny` | how we handle emergency calls | Body copy, mid-page |
-| `/contact` | `/emergency-plumbing-repair-westchester-ny` | urgent plumbing that can't wait | Body copy, above form |
+| `/contact` | `/emergency-plumbing-repair-westchester-ny` | urgent plumbing that cannot wait | Body copy, above form |
 | `/septic-system-service-westchester-ny` | `/services` | the plumbing services we offer county-wide | "Which part is a plumber's job" closing (added Phase 6) |
 | `/gasfitter-westchester-ny` | `/services` | our other plumbing work | "The gas work we handle" closing (added Phase 6) |
 | `/bathroom-remodeler-westchester-ny` | `/services` | everything else we get called out for | Scope paragraph, "The bathroom work we handle" (added Phase 6) |
