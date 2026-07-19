@@ -149,3 +149,4 @@ do not trust the count in this header alone, re-run the check.
 | `/garbage-disposal-repair-westchester-ny` | `/drain-cleaning-westchester-ny` | clearing the line beyond it | "What the symptom means" (added Phase 6) |
 | `/fixture-replacement-westchester-ny` | `/sink-installation-westchester-ny` | a full sink installation | "What counts" section (added Phase 6) |
 | `/fixture-replacement-westchester-ny` | `/pipe-repair-westchester-ny` | a pipe repair rather than a fixture swap | "Old houses" section (added Phase 6) |
+| `/plumbing-inspection-westchester-ny` | `/sewer-camera-inspection-westchester-ny` | a camera down the lateral | "Buying a house" (added Phase 6) |
