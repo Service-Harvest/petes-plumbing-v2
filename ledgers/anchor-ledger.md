@@ -82,7 +82,8 @@ do not trust the count in this header alone, re-run the check.
 | `/bathtub-installation-westchester-ny` | `/bathroom-remodeler-westchester-ny` | our other bathroom plumbing work | Parent link, closing section |
 | `/shower-valve-replacement-westchester-ny` | `/bathroom-remodeler-westchester-ny` | bathroom plumbing we handle | Parent link, closing section |
 | `/toilet-installation-westchester-ny` | `/bathroom-remodeler-westchester-ny` | everything we do in bathrooms | Parent link, closing section |
-| `/burst-pipe-repair-westchester-ny` | `/water-damage-restoration-westchester-ny` | limiting water damage after a break | Parent link, closing section |
+| `/burst-pipe-repair-westchester-ny` | `/water-damage-restoration-westchester-ny` | the water damage side and who does which part | FAQ (revised Phase 6) |
+| `/burst-pipe-repair-westchester-ny` | `/repiping-westchester-ny` | replacing a run that keeps failing | "What the repair involves" (added Phase 6) |
 | `/frozen-pipe-repair-westchester-ny` | `/water-damage-restoration-westchester-ny` | water damage repairs we handle | Parent link, closing section |
 | `/emergency-plumbing-repair-westchester-ny` | `/burst-pipe-repair-westchester-ny` | a pipe that lets go suddenly | Related services, mid-page |
 | `/emergency-plumbing-repair-westchester-ny` | `/frozen-pipe-repair-westchester-ny` | winter pipe failures | Related services, mid-page |
@@ -101,7 +102,7 @@ do not trust the count in this header alone, re-run the check.
 | `/slab-leak-repair-westchester-ny` | `/leak-detection-westchester-ny` | pinpointing where the water is escaping | Related services, mid-page |
 | `/pipe-repair-westchester-ny` | `/repiping-westchester-ny` | when patching is no longer enough | Related services, mid-page |
 | `/repiping-westchester-ny` | `/pipe-repair-westchester-ny` | single-section pipe repairs | Related services, mid-page |
-| `/burst-pipe-repair-westchester-ny` | `/emergency-plumbing-repair-westchester-ny` | after-hours emergency response | Related services, mid-page |
+| `/burst-pipe-repair-westchester-ny` | `/frozen-pipe-repair-westchester-ny` | a frozen pipe that has already let go | "Why pipes burst here" (revised Phase 6) |
 | `/frozen-pipe-repair-westchester-ny` | `/burst-pipe-repair-westchester-ny` | pipes that split from freezing | Related services, mid-page |
 | `/water-main-repair-westchester-ny` | `/low-water-pressure-repair-westchester-ny` | pressure problems across the house | Related services, mid-page |
 | `/low-water-pressure-repair-westchester-ny` | `/water-main-repair-westchester-ny` | supply line and main issues | Related services, mid-page |
@@ -111,7 +112,6 @@ do not trust the count in this header alone, re-run the check.
 | `/faucet-installation-westchester-ny` | `/sink-installation-westchester-ny` | new sink installation | Related services, mid-page |
 | `/sink-installation-westchester-ny` | `/faucet-installation-westchester-ny` | matching faucet work | Related services, mid-page |
 | `/garbage-disposal-repair-westchester-ny` | `/sink-installation-westchester-ny` | sink work under the counter | Related services, mid-page |
-| `/fixture-replacement-westchester-ny` | `/faucet-installation-westchester-ny` | faucet upgrades | Related services, mid-page |
 | `/appliance-hook-up-westchester-ny` | `/commercial-plumbing-westchester-ny` | small business plumbing needs | Related services, mid-page |
 | `/kitchen-plumbing-remodeling-westchester-ny` | `/sink-installation-westchester-ny` | kitchen sink installation | Related services, mid-page |
 | `/kitchen-plumbing-remodeling-westchester-ny` | `/garbage-disposal-repair-westchester-ny` | disposal repair and replacement | Related services, mid-page |
@@ -142,3 +142,10 @@ do not trust the count in this header alone, re-run the check.
 | `/gasfitter-westchester-ny` | `/services` | our other plumbing work | "The gas work we handle" closing (added Phase 6) |
 | `/bathroom-remodeler-westchester-ny` | `/services` | everything else we get called out for | Scope paragraph, "The bathroom work we handle" (added Phase 6) |
 | `/water-damage-restoration-westchester-ny` | `/services` | the plumbing repairs we handle | "The repairs we handle" closing (added Phase 6) |
+| `/low-water-pressure-repair-westchester-ny` | `/pipe-repair-westchester-ny` | a corroded-pipe repair | "Too much pressure" section (added Phase 6) |
+| `/toilet-repair-westchester-ny` | `/drain-cleaning-westchester-ny` | drain and clog work | "Common problems" section (added Phase 6) |
+| `/faucet-installation-westchester-ny` | `/frozen-pipe-repair-westchester-ny` | winter pipe splits | "Outdoor faucets" section (added Phase 6) |
+| `/sink-installation-westchester-ny` | `/garbage-disposal-repair-westchester-ny` | a disposal fitted or replaced | "Jobs worth doing at the same time" (added Phase 6) |
+| `/garbage-disposal-repair-westchester-ny` | `/drain-cleaning-westchester-ny` | clearing the line beyond it | "What the symptom means" (added Phase 6) |
+| `/fixture-replacement-westchester-ny` | `/sink-installation-westchester-ny` | a full sink installation | "What counts" section (added Phase 6) |
+| `/fixture-replacement-westchester-ny` | `/pipe-repair-westchester-ny` | a pipe repair rather than a fixture swap | "Old houses" section (added Phase 6) |
