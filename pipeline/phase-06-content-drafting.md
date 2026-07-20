@@ -33,6 +33,28 @@ then all remaining category/service pages, then About/Contact.
    a pro), and so on. This isn't a rigid template — swap in a section a page
    genuinely needs — but two pages of the same service type shouldn't read
    as structured by two different people.
+
+   > **Exactly 5, and only these count — `scripts/validate.js` enforces it as a
+   > hard fail.** The gate counts every `<h2>` on the page *except* those inside
+   > the table-of-contents nav and inside the FAQ section, and requires the total
+   > to be exactly 5. Two consequences that have bitten a real build:
+   >
+   > - **The count is 5 regardless of research tier.** "Lighter research" for a
+   >   Tier 3 page (see `phase-05-per-page-research.md`) means less live SERP work
+   >   and a shorter page — it does **not** mean fewer sections. A Tier 3 page
+   >   still gets exactly 5 H2 content sections; they are just shorter. Drafting a
+   >   Tier 3 page with only 3 sections fails the gate and needs 2 more genuine
+   >   sections added later (cost factors, prevention, before-you-call, and
+   >   maintenance are the usual, service-appropriate additions) — cheaper to get
+   >   right the first time.
+   > - **Nothing else on the page may use `<h2>`.** The TOC heading, every
+   >   mid-page CTA banner heading, and the footer's column labels must *not* be
+   >   `<h2>`, or the gate counts them and the page fails with far more than 5.
+   >   Make the TOC a `<nav class="toc">` (the validator excludes it by that
+   >   class), give CTA-banner headings a non-heading element like
+   >   `<p class="cta-title">`, and use `<h3>` (or a styled non-heading) for
+   >   footer column labels. Set this up in the Phase 4 snippets so it is right
+   >   sitewide from the start rather than retrofitted across ~40 pages.
 5. Internal links to parent, services hub, relevant children, 2–4 related
    pages — placed inside body copy (paragraphs, bullets, explanatory text),
    never only in cards/grids/menus/footer.

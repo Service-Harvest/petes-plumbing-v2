@@ -300,6 +300,19 @@ p { margin: 0 0 var(--sp-4); max-width: var(--measure); }
 .cta-band { text-align: center; }
 .cta-band p { margin-inline: auto; }
 .cta-band .btn-row { justify-content: center; }
+/* CTA headings are deliberately NOT <h2> — the page's five content-section
+   <h2>s are the only H2s, per the Phase 12 structure check. .cta-title
+   carries the visual weight of a heading without being one. */
+.cta-title {
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  letter-spacing: -0.018em;
+  line-height: 1.15;
+  margin: 0 0 var(--sp-4);
+  color: #fff;
+  max-width: none;
+  text-wrap: balance;
+}
 
 /* ---------- Footer ---------- */
 .site-footer {

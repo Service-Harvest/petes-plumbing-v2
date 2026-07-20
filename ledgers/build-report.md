@@ -87,7 +87,43 @@ approved service area. No location pages are built in this phase per Phase 3 rul
 later, and is recorded here so that decision isn't re-derived from scratch.
 
 ## Content Quality Notes
-(Notable QA findings from Phase 8, per page)
+
+**Phase 8 QA — all 46 pages, 8 checks. Two real fixes, one structural.**
+
+*Check 1–2 (factual accuracy / claims-compliance — hard blockers): PASS.*
+Sitewide scans found no invented ratings, review counts, founding years, license
+numbers, response-time promises, percentages, awards, or superlatives. The one
+stray figure — "a $5 aerator" on the low-water-pressure page — was removed, since
+the build carries no pricing anywhere. The 24-hour mentions on the homepage and
+contact page both *decline* the claim; years-of-experience is consistently the
+authorized "15+". No hallucinated local facts.
+
+*Check 3–4 (reading level / flow): PASS.* Prose is short-sentence, plain-language
+throughout; a handful of 35–40 word sentences, acceptable. Voice consistent.
+
+*Check 5–6 (redundancy): PASS.* Content-ledger ownership held through drafting.
+The Phase 8 section additions (below) were checked for reuse: the 35 "What affects
+the cost" sections have 35 distinct opening sentences, and the finished-basement
+premise is not reused as an opening on more than one page.
+
+*Check 7 (H2 structural consistency): FIXED — this was the significant one.*
+`scripts/validate.js` requires **exactly 5 main H2 sections** on every
+category/service page (excluding the TOC nav and the FAQ section). Two problems
+were found and fixed:
+  1. The TOC ("On this page"), every mid-page CTA band, and the footer column
+     labels all used `<h2>`, which the validator counts. Fixed sitewide: the TOC
+     is now a `<nav class="toc">` (validator-excluded), CTA headings are
+     `<p class="cta-title">` (styled, not headings), footer labels are `<h3>`.
+  2. The 37 tier-2/tier-3 pages had only **3** content sections, not 5 — I had
+     conflated "lighter research / shorter" (which is about research depth and
+     word count) with "fewer sections" (which Phase 6 does not permit). Each was
+     expanded with 2 genuine, service-specific sections (cost factors, prevention,
+     before-you-call, maintenance, etc. — no padding), bringing every page to
+     exactly 5. The 5 tier-1 pages already had 5.
+
+*Check 8 (FAQ markers): PASS.* All 43 FAQ-bearing pages carry `<section id="faq">`
+(validator matches it regardless of attribute order); 5–6 FAQ items each
+(homepage 7, but it is validator-exempt as a core-nav page).
 
 ## Design System Notes (Phase 4a)
 
