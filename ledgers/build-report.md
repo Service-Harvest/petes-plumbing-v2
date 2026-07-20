@@ -10,7 +10,7 @@
 | DataforSEO MCP | ✅ Connected, used for Phase 1–2 | Live data. Keyword volume, SERP, and business listings all returned `status_code: 20000`. |
 | DataforSEO — LLM mentions endpoints | ⚠️ Connected but **no data for this market** | `ai_opt_llm_ment_top_domains` and `ai_opt_llm_ment_search` both returned empty `items[]` for "plumber armonk ny", "plumber westchester county", "emergency plumber near me". Not an auth failure — the mention dataset does not cover a market this small. |
 | DataforSEO — LLM response | ✅ Connected, used | `ai_optimization_llm_response` (gpt-4o-mini, web_search on) returned a full answer. This carried the entire AI/LLM signal for Phase 2. |
-| Gemini (image generation) | Not yet exercised — Phase 7 | |
+| Gemini (image generation) | ✅ Working (Phase 7) | `gemini-2.5-flash-image` via generateContent. First call (homepage hero) succeeded; returns ~1024² native, cover-cropped to 1200×630 by `scripts/generate-image.js`. Photorealistic, on-palette (navy work clothes). |
 
 **Confidence note for downstream phases:** the AI/LLM visibility signal in Phase 2
 is **qualitative only** — a single spot-check response, not aggregated mention
@@ -134,3 +134,28 @@ doesn't exist, which would have 404'd on every page.
 
 **This is not a substitute for a real brand mark.** The client should replace it
 once a logo exists.
+
+### Phase 7 — hero/OG images
+
+**46 photorealistic hero images generated via Gemini, zero failures, zero SVG
+substitutions.** One per page, each 1200×630 and doubling as that page's Open
+Graph/Twitter card image (the Phase 4a convention). Prompts were derived from the
+Phase 6 `data-slot` scene descriptions plus a shared style suffix (soft daylight,
+navy work clothes matching the palette, no text/logos) so the set reads as one
+consistent brand. `scripts/generate-image.js` cover-cropped each from Gemini's
+~1024² native output.
+
+- **Client-supplied images: none** (intake provided none), so every image is
+  generated/illustrative. Per the Phase 7 honesty rule, no image is captioned or
+  alt-texted as an actual customer, actual job, or actual team member — alt text
+  describes a generic plumber/scene. "Our actual work/team" framing is reserved
+  for real photos the client may add later.
+- **5 homepage priority-section images reuse** their destination pages' heroes
+  (same file, lazy-loaded at 600×315), per Phase 6 — not separately generated.
+- **Image compliance verified programmatically:** all 51 `<img>` tags have alt +
+  explicit width/height; the 46 LCP heroes are eager (`fetchpriority="high"`, no
+  lazy); the 5 below-fold reuse images are `loading="lazy"`. No empty alt text.
+
+**Substitutions list: none** — every slot got a real generated image. If the
+client later supplies real job/team photos, the generated heroes are the ones to
+replace first (About and Contact especially, where a real face adds most trust).
