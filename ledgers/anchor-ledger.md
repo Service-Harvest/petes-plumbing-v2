@@ -15,41 +15,54 @@ do not trust the count in this header alone, re-run the check.
 
 | Source Page | Destination Page | Anchor Text | Placement Note |
 |---|---|---|---|
+| `/services` | `/drainage-service-westchester-ny` | drain, sewer, and sump pump services | Hub category framing sentence (Phase 6) |
+| `/services` | `/septic-system-service-westchester-ny` | septic-connected plumbing problems | Hub category framing sentence (Phase 6) |
+| `/services` | `/gasfitter-westchester-ny` | gas line work and gas fitting | Hub category framing sentence (Phase 6) |
+| `/services` | `/bathroom-remodeler-westchester-ny` | bathroom plumbing for remodels | Hub category framing sentence (Phase 6) |
+| `/services` | `/water-damage-restoration-westchester-ny` | stopping water damage at its source | Hub category framing sentence (Phase 6) |
+| `/services` | `/drain-cleaning-westchester-ny` | Drain Cleaning | Hub card title (Phase 6) |
+| `/services` | `/hydro-jetting-westchester-ny` | Hydro Jetting | Hub card title (Phase 6) |
+| `/services` | `/sewer-line-repair-westchester-ny` | Sewer Line Repair | Hub card title (Phase 6) |
+| `/services` | `/sewer-camera-inspection-westchester-ny` | Sewer Camera Inspection | Hub card title (Phase 6) |
+| `/services` | `/sump-pump-installation-westchester-ny` | Sump Pump Installation | Hub card title (Phase 6) |
+| `/services` | `/grease-trap-cleaning-westchester-ny` | Grease Trap Cleaning | Hub card title (Phase 6) |
+| `/services` | `/septic-tank-service-westchester-ny` | Septic Tank Services | Hub card title (Phase 6) |
+| `/services` | `/gas-line-repair-westchester-ny` | Gas Line Repair | Hub card title (Phase 6) |
+| `/services` | `/bathroom-plumbing-remodeling-westchester-ny` | Bathroom Plumbing Remodeling | Hub card title (Phase 6) |
+| `/services` | `/shower-installation-westchester-ny` | Shower Installation | Hub card title (Phase 6) |
+| `/services` | `/bathtub-installation-westchester-ny` | Bathtub Installation | Hub card title (Phase 6) |
+| `/services` | `/shower-valve-replacement-westchester-ny` | Shower Valve Replacement | Hub card title (Phase 6) |
+| `/services` | `/toilet-installation-westchester-ny` | Toilet Installation | Hub card title (Phase 6) |
+| `/services` | `/emergency-plumbing-repair-westchester-ny` | Emergency Plumbing Repair | Hub card title (Phase 6) |
+| `/services` | `/burst-pipe-repair-westchester-ny` | Burst Pipe Repair | Hub card title (Phase 6) |
+| `/services` | `/frozen-pipe-repair-westchester-ny` | Frozen Pipe Repair | Hub card title (Phase 6) |
+| `/services` | `/leak-detection-westchester-ny` | Leak Detection | Hub card title (Phase 6) |
+| `/services` | `/slab-leak-repair-westchester-ny` | Slab Leak Repair | Hub card title (Phase 6) |
+| `/services` | `/pipe-repair-westchester-ny` | Pipe Repair | Hub card title (Phase 6) |
+| `/services` | `/repiping-westchester-ny` | Repiping and Pipe Replacement | Hub card title (Phase 6) |
+| `/services` | `/water-main-repair-westchester-ny` | Water Main and Water Line Repair | Hub card title (Phase 6) |
+| `/services` | `/low-water-pressure-repair-westchester-ny` | Low Water Pressure Repair | Hub card title (Phase 6) |
+| `/services` | `/water-heater-installation-westchester-ny` | Water Heater Installation | Hub card title (Phase 6) |
+| `/services` | `/water-heater-repair-westchester-ny` | Water Heater Repair | Hub card title (Phase 6) |
+| `/services` | `/tankless-water-heater-installation-westchester-ny` | Tankless Water Heater Installation | Hub card title (Phase 6) |
+| `/services` | `/boiler-installation-westchester-ny` | Boiler Installation | Hub card title (Phase 6) |
+| `/services` | `/toilet-repair-westchester-ny` | Toilet Repair | Hub card title (Phase 6) |
+| `/services` | `/faucet-installation-westchester-ny` | Faucet Installation and Repair | Hub card title (Phase 6) |
+| `/services` | `/sink-installation-westchester-ny` | Sink Installation | Hub card title (Phase 6) |
+| `/services` | `/garbage-disposal-repair-westchester-ny` | Garbage Disposal Repair | Hub card title (Phase 6) |
+| `/services` | `/fixture-replacement-westchester-ny` | Plumbing Fixture Replacement | Hub card title (Phase 6) |
+| `/services` | `/appliance-hook-up-westchester-ny` | Appliance Hook-Up and Laundry Plumbing | Hub card title (Phase 6) |
+| `/services` | `/kitchen-plumbing-remodeling-westchester-ny` | Kitchen Plumbing Remodeling | Hub card title (Phase 6) |
+| `/services` | `/water-treatment-filtration-westchester-ny` | Water Treatment and Filtration | Hub card title (Phase 6) |
+| `/services` | `/backflow-testing-westchester-ny` | Backflow Testing | Hub card title (Phase 6) |
+| `/services` | `/plumbing-inspection-westchester-ny` | Plumbing Inspection and Maintenance | Hub card title (Phase 6) |
+| `/services` | `/commercial-plumbing-westchester-ny` | Commercial Plumbing | Hub card title (Phase 6) |
 | `/` | `/services` | the full range of plumbing work we handle | Intro section, after opening paragraph |
 | `/` | `/emergency-plumbing-repair-westchester-ny` | burst pipes and after-hours plumbing emergencies | Priority services block |
 | `/` | `/water-heater-installation-westchester-ny` | installing a new water heater | Priority services block |
 | `/` | `/drainage-service-westchester-ny` | drainage and sewer work across the county | Priority services block |
 | `/` | `/drain-cleaning-westchester-ny` | clearing a stubborn clogged drain | Priority services block |
 | `/` | `/sump-pump-installation-westchester-ny` | keeping a finished basement dry | Priority services block |
-| `/services` | `/drainage-service-westchester-ny` | drain, sewer, and sump pump services | Category section heading copy |
-| `/services` | `/septic-system-service-westchester-ny` | septic-connected plumbing problems | Category section heading copy |
-| `/services` | `/gasfitter-westchester-ny` | gas line work and gas fitting | Category section heading copy |
-| `/services` | `/bathroom-remodeler-westchester-ny` | bathroom plumbing for remodels | Category section heading copy |
-| `/services` | `/water-damage-restoration-westchester-ny` | stopping water damage at its source | Category section heading copy |
-| `/services` | `/emergency-plumbing-repair-westchester-ny` | same-day emergency plumbing help | General plumbing section |
-| `/services` | `/water-heater-installation-westchester-ny` | new water heater installation | General plumbing section |
-| `/services` | `/water-heater-repair-westchester-ny` | getting the hot water working again | General plumbing section |
-| `/services` | `/tankless-water-heater-installation-westchester-ny` | switching to a tankless system | General plumbing section |
-| `/services` | `/boiler-installation-westchester-ny` | putting in a new boiler | General plumbing section |
-| `/services` | `/leak-detection-westchester-ny` | tracking down a hidden leak | General plumbing section |
-| `/services` | `/slab-leak-repair-westchester-ny` | leaks underneath a concrete slab | General plumbing section |
-| `/services` | `/pipe-repair-westchester-ny` | repairing damaged or corroded pipe | General plumbing section |
-| `/services` | `/repiping-westchester-ny` | replacing the plumbing in an older house | General plumbing section |
-| `/services` | `/burst-pipe-repair-westchester-ny` | a pipe that has already burst | General plumbing section |
-| `/services` | `/frozen-pipe-repair-westchester-ny` | pipes that freeze in cold weather | General plumbing section |
-| `/services` | `/water-main-repair-westchester-ny` | problems with the main water line | General plumbing section |
-| `/services` | `/low-water-pressure-repair-westchester-ny` | weak water pressure throughout the house | General plumbing section |
-| `/services` | `/toilet-repair-westchester-ny` | fixing a running or leaking toilet | General plumbing section |
-| `/services` | `/faucet-installation-westchester-ny` | faucet work inside and outside | General plumbing section |
-| `/services` | `/sink-installation-westchester-ny` | setting a new kitchen or bathroom sink | General plumbing section |
-| `/services` | `/garbage-disposal-repair-westchester-ny` | a disposal that has stopped working | General plumbing section |
-| `/services` | `/fixture-replacement-westchester-ny` | swapping out tired plumbing fixtures | General plumbing section |
-| `/services` | `/appliance-hook-up-westchester-ny` | hooking up washers and dishwashers | General plumbing section |
-| `/services` | `/kitchen-plumbing-remodeling-westchester-ny` | plumbing for a kitchen renovation | General plumbing section |
-| `/services` | `/water-treatment-filtration-westchester-ny` | softening and filtering your water | General plumbing section |
-| `/services` | `/backflow-testing-westchester-ny` | required backflow testing | General plumbing section |
-| `/services` | `/plumbing-inspection-westchester-ny` | a full check of your plumbing system | General plumbing section |
-| `/services` | `/commercial-plumbing-westchester-ny` | plumbing for small business properties | General plumbing section |
 | `/drainage-service-westchester-ny` | `/drain-cleaning-westchester-ny` | clearing slow and blocked drains | Child service list |
 | `/drainage-service-westchester-ny` | `/hydro-jetting-westchester-ny` | high-pressure line cleaning | Child service list |
 | `/drainage-service-westchester-ny` | `/sewer-line-repair-westchester-ny` | repairing a damaged sewer line | Child service list |
