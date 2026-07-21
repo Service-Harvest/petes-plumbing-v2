@@ -145,11 +145,14 @@ wrapper — the second documented gotcha). The wrapper/overlay element IDs use
 GHL's documented `#[POPUP_ID]-wrapper` / `-overlay` pattern
 (`popup-xHJhkUk8Wps0ag0Dokml-*`).
 
-⚠️ **Post-deploy verification required (Phase 13):** those element IDs are
-derived by the third-party script at runtime and cannot be confirmed before the
-site is live. Once deployed, open the popup once, inspect the actual wrapper/
-overlay IDs, and correct the script if they differ. This is the one piece of the
-build that cannot be fully validated pre-deploy.
+✅ **Post-deploy verification COMPLETED (Phase 13) — passing.** Inspected the
+live popup on the deployed site. Both element IDs matched the documented pattern
+exactly (`popup-xHJhkUk8Wps0ag0Dokml-overlay` / `-wrapper`), so **no correction
+was needed**. Verified end-to-end: on load both are `display:none` (suppression
+working — no auto-show), and a genuine `.request-estimate-cta` click sets
+`overlay:flex` / `wrapper:block` and the modal opens (confirmed visually). The
+chat widget also loads and displays live. Both documented GHL gotchas are handled
+correctly on the real site.
 
 **Review widget and Google Business Profile map: intentionally left as in-page
 placeholders**, per the intake ("review widget/gbp embed: skip, leave as
