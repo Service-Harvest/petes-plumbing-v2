@@ -125,6 +125,39 @@ were found and fixed:
 (validator matches it regardless of attribute order); 5–6 FAQ items each
 (homepage 7, but it is validator-exempt as a core-nav page).
 
+## GHL Embeds (Phase 10)
+
+Inserted sitewide (all 47 pages incl. 404), immediately before `</body>`:
+
+- **Chat widget** — the intake's LeadConnector loader script, once per page.
+- **Free estimate form** — the intake's iframe, reconfigured from
+  `data-trigger-type="alwaysShow"` to **`click`** with
+  `data-trigger-value=".request-estimate-cta"`. Every "Request a Free Estimate"
+  CTA sitewide already carries that class (from Phase 6), and each keeps its
+  real `href` (`/contact` or `#estimate`) as a graceful-degradation fallback.
+
+**The documented GHL gotcha is handled, but needs one live check.** GHL's
+`form_embed.js` ignores `data-trigger-type="click"` and auto-shows the popup on
+load. An inline script takes direct control: a `MutationObserver` force-hides the
+popup wrapper/overlay until a genuine `.request-estimate-cta` click, then sets the
+exact display values GHL uses when it auto-shows (`flex` on overlay, `block` on
+wrapper — the second documented gotcha). The wrapper/overlay element IDs use
+GHL's documented `#[POPUP_ID]-wrapper` / `-overlay` pattern
+(`popup-xHJhkUk8Wps0ag0Dokml-*`).
+
+⚠️ **Post-deploy verification required (Phase 13):** those element IDs are
+derived by the third-party script at runtime and cannot be confirmed before the
+site is live. Once deployed, open the popup once, inspect the actual wrapper/
+overlay IDs, and correct the script if they differ. This is the one piece of the
+build that cannot be fully validated pre-deploy.
+
+**Review widget and Google Business Profile map: intentionally left as in-page
+placeholders**, per the intake ("review widget/gbp embed: skip, leave as
+placeholders"). No review or rating data is present — inserting any would violate
+the no-invented-facts rule. Homepage "What our customers say" and the "Find us"
+sections on the homepage and contact page carry the placeholders, ready for the
+client's real embed codes later.
+
 ## Design System Notes (Phase 4a)
 
 **Palette** — no brand colors were supplied, so the palette was derived from the

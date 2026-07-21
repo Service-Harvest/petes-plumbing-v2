@@ -723,5 +723,91 @@
   </div>
 </footer>
 
+
+<!-- ===== GHL EMBEDS (Phase 10) — chat widget + click-triggered estimate form =====
+     Chat widget and lead form are GHL-hosted; only these snippets live in the
+     static site. Review widget and Google Business Profile embeds are
+     intentionally left as in-page placeholders per the client's intake
+     ("review widget/gbp embed: skip, leave as placeholders").
+
+     GOTCHA (documented in pipeline/phase-10-ghl-embeds.md): GHL's form_embed.js
+     does NOT honor data-trigger-type="click" — it auto-creates and auto-shows
+     the popup wrapper/overlay on load regardless. The inline script below takes
+     direct control: a MutationObserver force-hides the popup until a genuine
+     click on a .request-estimate-cta element, then sets the exact display
+     values GHL itself uses when it auto-shows (flex on overlay, block on
+     wrapper). The wrapper/overlay element IDs follow GHL's documented
+     "#[POPUP_ID]-wrapper" / "#[POPUP_ID]-overlay" pattern; POPUP_ID here is
+     "popup-xHJhkUk8Wps0ag0Dokml". THESE IDS MUST BE CONFIRMED AGAINST THE LIVE
+     POPUP once deployed (Phase 13) — they are derived from the form ID and
+     cannot be verified before the third-party script runs. -->
+
+<!-- Chat widget (sitewide) -->
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="69d95aea9a7ac3d3245191cd"></script>
+
+<!-- Free estimate form: click-triggered popup, shared trigger class -->
+<iframe
+    src="https://go.serviceharvest.com/widget/form/xHJhkUk8Wps0ag0Dokml"
+    style="display:none;width:100%;height:100%;border:none;border-radius:8px"
+    id="popup-xHJhkUk8Wps0ag0Dokml"
+    data-layout="{'id':'POPUP'}"
+    data-trigger-type="click"
+    data-trigger-value=".request-estimate-cta"
+    data-activation-type="alwaysActivated"
+    data-activation-value=""
+    data-deactivation-type="neverDeactivate"
+    data-deactivation-value=""
+    data-form-name="Free Estimate Form"
+    data-height="1050"
+    data-layout-iframe-id="popup-xHJhkUk8Wps0ag0Dokml"
+    data-form-id="xHJhkUk8Wps0ag0Dokml"
+    title="Free Estimate Form"
+    data-modal-height="500">
+</iframe>
+<script src="https://go.serviceharvest.com/js/form_embed.js"></script>
+
+<script>
+/* Take direct control of the GHL popup: keep it hidden until a real CTA click. */
+(function () {
+  var POPUP = "popup-xHJhkUk8Wps0ag0Dokml";
+  var allowed = false;
+  function els() {
+    return [document.getElementById(POPUP + "-overlay"),
+            document.getElementById(POPUP + "-wrapper")];
+  }
+  function forceHide() {
+    if (allowed) return;
+    els().forEach(function (el) {
+      if (el) el.style.setProperty("display", "none", "important");
+    });
+  }
+  // Suppress the auto-show the moment GHL creates/shows the wrapper/overlay.
+  var mo = new MutationObserver(forceHide);
+  mo.observe(document.documentElement, {
+    childList: true, subtree: true, attributes: true, attributeFilter: ["style", "class"]
+  });
+  document.addEventListener("DOMContentLoaded", forceHide);
+
+  // A genuine click on any shared trigger opens the popup in place. If the
+  // popup elements do not exist yet (script failed to load), we do nothing and
+  // let the CTA's own href act as the graceful-degradation fallback.
+  document.addEventListener("click", function (e) {
+    var trigger = e.target.closest(".request-estimate-cta");
+    if (!trigger) return;
+    var overlay = document.getElementById(POPUP + "-overlay");
+    var wrapper = document.getElementById(POPUP + "-wrapper");
+    if (!overlay && !wrapper) return;              // fallback href handles it
+    e.preventDefault();
+    allowed = true;
+    // GHL's own auto-show uses flex on the overlay and block on the wrapper;
+    // merely clearing our override falls back to its injected display:none, so
+    // we must set these explicitly (second documented gotcha).
+    if (overlay) overlay.style.setProperty("display", "flex", "important");
+    if (wrapper) wrapper.style.setProperty("display", "block", "important");
+  });
+})();
+</script>
+<!-- ===== END GHL EMBEDS ===== -->
+
 </body>
 </html>
