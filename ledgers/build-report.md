@@ -257,3 +257,25 @@ consistent brand. `scripts/generate-image.js` cover-cropped each from Gemini's
 **Substitutions list: none** — every slot got a real generated image. If the
 client later supplies real job/team photos, the generated heroes are the ones to
 replace first (About and Contact especially, where a real face adds most trust).
+
+
+## Deploy (Phase 13) — neutralized mock deploy
+
+Per an explicit decision, this build was deployed **publicly to GitHub Pages so
+it can be seen working, but with outward search-engine reach neutralized**:
+
+- **`/site/CNAME` removed** before deploy — so GitHub Pages serves at the
+  project sub-path `github.io` URL rather than expecting the (unconnected)
+  testing domain. The site's relative-path scaffold (Phase 4 Task 2) was built
+  for exactly this sub-path fallback, so nav/CSS/images resolve correctly.
+- **`/site/indexnow-key.txt` removed** before deploy — the deploy workflow skips
+  the IndexNow ping when the key (or CNAME/sitemap) is absent, so **no
+  fabricated pages are submitted to search engines.** The generated key was
+  `ccb11290104ab60903bf95ae06a52f14` — restore this exact file (never regenerate) for a real launch.
+- Every page's canonical, OG, and JSON-LD still point at
+  `https://hexorasystems.com/...` (the intended production identity, per Phase 4
+  Task 2). On the github.io URL those canonicals point elsewhere, which also
+  discourages accidental indexing of the test URL — a useful side effect.
+
+For a real launch: restore CNAME + the IndexNow key file, connect the apex
+domain (DNS + HTTPS), and complete the GHL live-popup verification.
