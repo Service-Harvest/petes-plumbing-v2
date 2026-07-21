@@ -50,18 +50,21 @@
    isn't confirmed — note that explicitly in the final report as a
    follow-up item, don't silently drop it. Otherwise, walk through all of
    the following before considering Phase 13 done:
-   a. **Ask the client which form should be canonical**: the apex domain
-      (`example.com`) or `www` (`www.example.com`). Default recommendation
-      is apex unless they have a specific reason to prefer `www` (e.g. an
-      existing CDN/email setup that expects it) — apex is simpler for the
-      client to hand out verbally and in ads ("visit example.com," not
-      "visit www dot example dot com"). Record their choice; the rest of
-      this step assumes apex as canonical and `www` as the redirecting
-      form — swap the roles if the client picks `www` instead.
-   b. **Give the client both sets of DNS records they need to add at their
-      registrar** (this always happens outside the repo — report it
-      clearly, never attempt it yourself, it requires their registrar
-      account):
+   a. **Canonical form defaults to apex — do not ask.** Use the apex domain
+      (`example.com`) as canonical, with `www` as the redirecting form. Apex is
+      simpler for the client to hand out verbally and in ads. Only use `www`
+      instead if the intake *explicitly* states a reason to (e.g. an existing
+      CDN/email setup that expects it) — that's a documented signal in the
+      intake, not a mid-build question. Record which form was used in the final
+      report. Never pause to ask the human which they prefer; the execution
+      model in `CLAUDE.md` forbids any check-in between the Phase 3 checkpoint
+      and the final report.
+   b. **The DNS records the client must add go in the final report — this is
+      the single manual action the human ever takes in the whole build.** List
+      both sets clearly in the report (they happen outside the repo, in the
+      client's registrar account, which you cannot access). Do not send them as
+      a mid-build chat message and do not wait on them before finishing the
+      build; they belong in the Phase 13 report and nowhere else.
       - Apex: four `A` records (host `@` or blank, per their registrar)
         pointing to GitHub Pages' IPs: `185.199.108.153`, `185.199.109.153`,
         `185.199.110.153`, `185.199.111.153`. (`AAAA` records for IPv6 are
@@ -72,16 +75,22 @@
       Both record sets are required regardless of which form is canonical
       — the redirect only works if the non-canonical form also has a real
       DNS record pointing at GitHub Pages.
-   c. Once the client confirms DNS is added (allow real propagation time —
-      anywhere from minutes to hours depending on registrar/TTL, don't
-      assume it's instant), set the custom domain via the GitHub Pages API
-      using the **canonical** form only:
+   c. **Set the custom domain now, and complete verification yourself as a
+      deferred tail step — this is your job, not the human's, and it is not a
+      check-in.** Set the custom domain via the GitHub Pages API using the
+      **canonical** (apex) form:
       `gh api repos/Service-Harvest/[repo-name]/pages -X PUT -f cname=[canonical-domain]`
-      Confirm the response shows the domain accepted, then check
+      It will show unverified until the client's DNS resolves. The final report
+      tells the client to add the DNS records (step b) — that is their only
+      action. Once those records have propagated (minutes to hours depending on
+      registrar/TTL), **you** complete the activation: re-check
       `gh api repos/Service-Harvest/[repo-name]/pages` for
-      `protected_domain_state`/verification status and that HTTPS
-      provisioning completes (`https_enforced: true` once the cert is
-      issued — this can take a few minutes after verification passes).
+      `protected_domain_state`/verification status and that HTTPS provisioning
+      completes (`https_enforced: true`). This finishing pass happens whenever
+      you next run after DNS is live; it requires no decision from the human and
+      is never a reason to pause the build or ask them anything — their DNS
+      action is the only gate, and completing the activation on top of it is
+      yours.
    d. **Do not assume the non-canonical form redirects automatically —
       verify it live.** Fetch the non-canonical URL directly (e.g. `curl -I
       https://www.[domain]`) and confirm it returns a real `30x` redirect

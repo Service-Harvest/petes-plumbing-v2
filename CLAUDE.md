@@ -105,15 +105,58 @@ checkpoint explicitly marked below.
 
 ## Execution model
 
-1. Confirm `/intake/intake-completed.md` exists and is complete (Phase 0). If
-   incomplete, stop and list exactly what's missing — do not guess or proceed.
-2. Run Phases 1–3 and produce the Phase 3 checkpoint output. **Stop here and wait
-   for explicit human approval.** This is the only planned interruption in the
+The whole build has **exactly one planned interruption: the Phase 3 checkpoint.**
+Before it, Phase 0 may pause only to report an incomplete intake. After the
+checkpoint is approved, the build runs all the way to a deployed site with **zero
+further stops of any kind.** This section is absolute; read it literally.
+
+1. **Phase 0 — intake.** Confirm `/intake/intake-completed.md` exists and is
+   complete. If incomplete, stop and list exactly what's missing — do not guess
+   or proceed. This is the only pause permitted *before* the checkpoint.
+
+2. **Phases 1–3 — research + the checkpoint.** Run them and produce the Phase 3
+   checkpoint output in the GBP-copyable format. **Stop here and wait for
+   explicit human approval.** This is the single planned interruption in the
    entire pipeline.
-3. Once approved, run Phases 4–13 to completion without further check-ins
-   (this includes Phase 4a, which runs immediately after Phase 4 and before
-   Phase 5), reporting only at the end (Phase 13's final report).
-4. Phase 14 sub-flows are invoked separately, on demand, long after initial launch.
+
+3. **Phases 4–13 — build to a deployed site, no stops.** Once the checkpoint is
+   approved, run every phase through deployment **without a single further
+   check-in.** No exceptions:
+   - **No phase-completion reports.** Do not stop to summarize after Phase 4, 6,
+     9, or any phase. Finish a phase and move straight into the next one.
+   - **No "should I continue?" / "ready for the next phase?" questions.** The
+     answer is always yes, so asking is itself a violation of this model.
+   - **No surfacing judgment calls for a decision.** Every phase's choices have a
+     documented default — take it and keep moving. If a phase ever seems to lack
+     a default, pick the most reasonable option, write down what you chose and
+     why in `/ledgers/build-report.md`, and continue. Never pause to ask.
+   - **A long phase is still not a reason to stop.** Phase 6 alone is ~46 pages;
+     that length is not licence to batch-report or wait for a "continue." Work
+     through it in one continuous run.
+   - This includes Phase 4a, which runs immediately after Phase 4 and before
+     Phase 5.
+
+4. **Anything the human might want to know goes in `/ledgers/build-report.md`,
+   never a chat message that waits for a reply.** Notable findings, judgment
+   calls made and why, gaps flagged, image substitutions, the Phase 10
+   live-popup verification note — all written to the report as you go. The human
+   reads the report when the build finishes; they are not watching chat between
+   phases.
+
+5. **The human sees exactly two things, ever, for any client:** (a) the Phase 3
+   checkpoint awaiting approval, and (b) the final Phase 13 report once the site
+   is fully built and deployed. Nothing in between. If you are about to send the
+   human anything else, stop — it belongs in the build report instead.
+
+6. **The only manual action the human ever takes is adding DNS records at their
+   domain registrar.** Everything else is yours: creating and pushing the repo,
+   enabling GitHub Pages, the CNAME, the domain-activation step itself, and the
+   post-deploy live-popup check. The Phase 13 report gives them the exact DNS
+   records to add — that single hand-off is the only thing you ask of them, and
+   it appears only in the final report, not mid-build.
+
+7. Phase 14 sub-flows are invoked separately, on demand, long after initial
+   launch.
 
 ## A note on session continuity
 
