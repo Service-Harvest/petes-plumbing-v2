@@ -158,6 +158,35 @@ the no-invented-facts rule. Homepage "What our customers say" and the "Find us"
 sections on the homepage and contact page carry the placeholders, ready for the
 client's real embed codes later.
 
+## Technical / Validation (Phases 11–12)
+
+**Phase 11 — sitemap + technical.** `sitemap.xml` generated with all 46
+indexable URLs (404 excluded), `<lastmod>` 2026-07-21; every page's canonical is
+byte-identical to its sitemap `<loc>` (0 mismatches). IndexNow key written to
+`/site/indexnow-key.txt` (first build — persist, never rotate). robots.txt and
+llms.txt confirmed on the final domain with the deliberate AI-crawler allow policy
+intact (GPTBot, ClaudeBot, PerplexityBot, Google-Extended).
+
+**Phase 12 — validation gate: PASSES (exit 0, zero hard failures).** Two failure
+classes were found and fixed to get there:
+
+1. **Favicon format (184 failures — a Phase 4 scaffold bug).** `validate.js`
+   matches the favicon `<link>` tags with strict regexes requiring attribute
+   order `rel` → `type` → `sizes` → `href`, plus an **SVG icon** and
+   `sizes="180x180"` on apple-touch. The Phase 4 scaffold used a different order
+   and PNG-only (I'd dropped the SVG link in Phase 4a). Fixed on all 47 pages,
+   added a real `favicon.svg`, and **ported the exact required format to
+   `pipeline-template/phase-04`** so future builds emit it correctly from the
+   start.
+2. **One "new new" duplicated word** across a link boundary on the faucet page
+   (validate.js catches lead-in text repeating the anchor's first word). Reworded.
+
+**90 non-blocking warnings remain, by design.** All are title-tag length
+(>60 chars) or meta-description length (<150 chars). Per Phase 12 these are
+warnings, not failures — titles run long because every one carries the geo plus
+"| Pete's Plumbing", and metas are concise. Left as-is rather than churn 46 pages
+of titles/metas for marginal SEO benefit; noted here for awareness.
+
 ## Design System Notes (Phase 4a)
 
 **Palette** — no brand colors were supplied, so the palette was derived from the

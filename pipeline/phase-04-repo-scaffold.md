@@ -59,6 +59,21 @@ client-side (no SPA behavior of any kind).
    are produced in Phase 4a (Design System), which runs immediately after
    this phase; this scaffold just needs the `<link rel="icon">` etc. tags
    wired into the page template, ready to point at them.
+   > **Emit these five tags in exactly this shape — `scripts/validate.js`
+   > matches them with strict regexes (attribute order matters: `rel`, then
+   > `type`, then `sizes`, then `href`), and a different order or a missing
+   > one fails the gate on every page:**
+   > ```html
+   > <link rel="icon" type="image/svg+xml" href="{{ROOT}}assets/img/favicon.svg">
+   > <link rel="icon" type="image/png" sizes="32x32" href="{{ROOT}}assets/img/favicon-32.png">
+   > <link rel="icon" type="image/png" sizes="16x16" href="{{ROOT}}assets/img/favicon-16.png">
+   > <link rel="apple-touch-icon" sizes="180x180" href="{{ROOT}}assets/img/apple-touch-icon.png">
+   > <link rel="manifest" href="{{ROOT}}site.webmanifest">
+   > ```
+   > The **SVG icon is required** (not optional): the gate checks for a
+   > `type="image/svg+xml"` icon tag, so Phase 4a must produce a real
+   > `favicon.svg` asset, not just PNGs. The apple-touch-icon **must** carry
+   > `sizes="180x180"`. Every referenced file must exist on disk.
 6. **`<html lang="en">`, viewport meta, charset** on every page template.
 7. **Open Graph + Twitter card tags** on every page template, populated
    per-page (unique title/description/image per page, not one static OG
