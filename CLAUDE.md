@@ -103,6 +103,72 @@ checkpoint explicitly marked below.
   `pipeline-template/` matches" are different claims — only make the second
   one.
 
+- **Classifying a mid-build fix — client-specific or template-level — is
+  yours to decide, not something to be asked each time.** The sync rule above
+  says *how* to port a template-level fix; this says how to *recognize* one on
+  your own. Every time you fix something mid-build, run it through these tests
+  before you move on:
+  - **The next-client test (the primary one).** Would this same problem
+    plausibly recur on the very next build — a different business, industry,
+    location, and set of facts — because the flaw rides along in a *reusable*
+    file? If yes, it's template-level. The invisible white-on-white button (a
+    CSS-specificity trap in the design method), the button label that couldn't
+    wrap, the bland/generic design baseline, the take-the-GBP-city-literally
+    geo default, the mis-ordered/missing favicon set in the scaffold, the
+    services-hub coverage gap, the double-padded section rhythm, the
+    defined-but-never-applied `hero-media` frame, the miscounted H2 gate, and
+    the bare category+location H1 were all template-level — *none* of them are
+    about one client; the next plumber, roofer, or electrician would have hit
+    every one.
+  - **The fact-vs-mechanism test.** Is what you corrected a *fact* or a
+    *mechanism*? Facts — business name, phone, address, domain, credential
+    claims ("over 15 years," licensed/insured), the specific services and
+    categories chosen, the specific geo-target selected, the actual copy, the
+    images, the ledgers — are client-specific and must **never** be ported;
+    pushing any of them into the template poisons the next build. Mechanisms —
+    how an H1 is *structured*, how a button *sizes itself*, how sections
+    *alternate*, what the validator *checks*, what defaults the design system
+    *ships* — are template-level. Correcting a client's H1 wording is client
+    work; the *rule* "wrap the head term in the client's own real
+    differentiators" is template work. (When the doubled-word check flagged a
+    `new new` slip, the *check* was the template asset already doing its job —
+    rewording that one sentence was client-only, and nothing needed porting. A
+    clean split.)
+  - **The where-does-the-fix-live test.** If the edit touches a reusable file
+    (`pipeline/*.md`, `scripts/validate.js`, the scaffold, the design-system
+    method, `CLAUDE.md`), it is template-level by construction and must be
+    ported. If it only touches this client's outputs (`/site/**`, their
+    ledgers, their images, their intake), it stays. `/snippets/` is the subtle
+    case: it lives in both folders yet holds the shared header/nav/footer
+    *structure* (template — port it) fused with this client's actual NAP and
+    footer links (client-specific — never port). Read this test as "port the
+    *mechanism* the reusable file exists to carry, reproduced with the
+    template's own reference/placeholder content" — never the file's literal
+    bytes, or you'll push one client's phone number into every future build.
+  - **Most real fixes are BOTH — that's the normal case, not an edge case.**
+    Nearly every fix has a concrete client-output correction *and* a
+    generalized backstop: fix the client's HTML/CSS/content here, and port the
+    rule that stops it recurring — ideally as a mechanical `validate.js` gate
+    (contrast, section alternation, hero-media presence, H2 count, hub
+    coverage), or failing that as sharpened phase/`CLAUDE.md` instructions.
+    When a failure is detectable by code, prefer adding the gate over adding
+    prose. The client-output half stays; the generalized half ports. "I fixed
+    it here" is only half-done whenever the cause was a reusable-file gap.
+  - **When the classification is genuinely two-sided, surface it instead of
+    deciding alone.** A few shapes stay ambiguous even with the tests above;
+    flag these rather than porting (or not porting) silently: **(a)** a
+    *single-occurrence* problem where you can't yet tell a one-off slip from a
+    systemic default (the literal-city geo mistake was one instance, and
+    reading it as a systemic default worth a permanent step was a judgment
+    call); **(b)** a fix that is *half fact, half rule in the same episode*
+    (the geo work was exactly this — the *selection step* was a template gap to
+    port, the *chosen target* a client decision to leave); **(c)** an
+    *aesthetic/quality* fix, where the underlying principle generalizes
+    ("reach past generic; frame images; give the hero real depth") but the
+    specific execution (a dot-grid hero, an exact palette) is partly a function
+    of this client's brand direction. Port the clearly-general part, name the
+    uncertain part, and ask.
+
 ## Execution model
 
 There are only two places the build ever involves the human: the **Phase 3
