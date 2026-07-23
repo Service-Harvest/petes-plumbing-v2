@@ -145,7 +145,12 @@ p { margin: 0 0 var(--sp-4); max-width: var(--measure); }
 .section-deep { background: var(--bg-deep); color: #fff; }
 .section-deep h1, .section-deep h2, .section-deep h3 { color: #fff; }
 .section-deep p { color: #dbe9f0; }
-.section-deep a { color: #fff; }
+/* Plain in-body links go white on the dark band, but NOT buttons — a blanket
+   `.section-deep a` color rule out-specifies `.btn-secondary`'s own text color
+   and turns a white-background secondary button into white-on-white at rest
+   (visible only on hover, where the :hover rule wins). Excluding `.btn` keeps
+   every button's own legible color pairing regardless of section context. */
+.section-deep a:not(.btn) { color: #fff; }
 
 .grid { display: grid; gap: var(--sp-5); }
 .grid-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }

@@ -638,6 +638,104 @@ if (sitemapUrls === null) {
 }
 
 // ---------------------------------------------------------------------
+// Button/CTA colour contrast (WCAG AA) — hard fail
+// ---------------------------------------------------------------------
+// Recurring bug class: a button's text colour ends up matching (or too close
+// to) its own background at REST — e.g. a blanket `.section-deep a { color:#fff }`
+// out-specifies `.btn-secondary`'s brand text colour and renders a white button
+// white-on-white until hover. This backstop computes the resting-state contrast
+// ratio of each button variant against its background — including the colour it
+// would actually inherit inside the dark `.section-deep` band — and hard-fails
+// below WCAG AA (4.5:1 normal text, 3:1 for large text / buttons).
+(function checkButtonContrast() {
+  const cssPath = path.join(SITE_DIR, "assets", "css", "main.css");
+  if (!fs.existsSync(cssPath)) {
+    warn("main.css not found — skipping button contrast check.");
+    return;
+  }
+  const css = readFile(cssPath);
+
+  // Resolve :root custom properties to hex.
+  const vars = {};
+  const rootMatch = css.match(/:root\s*\{([\s\S]*?)\}/);
+  if (rootMatch) {
+    for (const m of rootMatch[1].matchAll(/(--[\w-]+)\s*:\s*(#[0-9a-fA-F]{3,6})\s*;/g)) {
+      vars[m[1]] = m[2];
+    }
+  }
+  const resolve = (v) => {
+    if (!v) return null;
+    v = v.trim();
+    const varRef = v.match(/^var\((--[\w-]+)\)$/);
+    if (varRef) return vars[varRef[1]] || null;
+    return /^#[0-9a-fA-F]{3,6}$/.test(v) ? v : null;
+  };
+  // Pull `color` and `background`/`background-color` from a selector's block.
+  const ruleColors = (selectorRegex) => {
+    const re = new RegExp(selectorRegex + "\\s*\\{([^}]*)\\}");
+    const m = css.match(re);
+    if (!m) return null;
+    const body = m[1];
+    const color = (body.match(/(?:^|;|\{)\s*color\s*:\s*([^;]+)/) || [])[1];
+    const bg = (body.match(/background(?:-color)?\s*:\s*([^;]+)/) || [])[1];
+    return { color: resolve(color), bg: resolve(bg) };
+  };
+
+  const hexToRgb = (h) => {
+    h = h.replace("#", "");
+    if (h.length === 3) h = h.split("").map((c) => c + c).join("");
+    return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16));
+  };
+  const relLum = (hex) => {
+    const [r, g, b] = hexToRgb(hex).map((v) => {
+      v /= 255;
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  };
+  const contrast = (a, b) => {
+    const la = relLum(a), lb = relLum(b);
+    return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+  };
+
+  const primary = ruleColors("\\.btn-primary");
+  const secondary = ruleColors("\\.btn-secondary");
+  if (!primary || !secondary || !primary.color || !primary.bg || !secondary.color || !secondary.bg) {
+    warn("Could not parse .btn-primary/.btn-secondary colours from main.css — button contrast check skipped.");
+    return;
+  }
+
+  // Resting pairings to verify. Buttons are large/bold → 3:1 AA threshold.
+  const pairings = [
+    { label: ".btn-primary", text: primary.color, bg: primary.bg },
+    { label: ".btn-secondary", text: secondary.color, bg: secondary.bg },
+  ];
+
+  // Does a `.section-deep a` colour rule override buttons on the dark band?
+  // If the selector lacks `:not(.btn)`, buttons inherit that colour at rest.
+  const deepAnchor = css.match(/\.section-deep\s+a(:not\(\.btn\))?\s*\{([^}]*)\}/);
+  if (deepAnchor) {
+    const excludesBtn = !!deepAnchor[1];
+    const deepColor = resolve((deepAnchor[2].match(/color\s*:\s*([^;]+)/) || [])[1]);
+    if (!excludesBtn && deepColor) {
+      pairings.push({ label: ".btn-primary inside .section-deep", text: deepColor, bg: primary.bg });
+      pairings.push({ label: ".btn-secondary inside .section-deep", text: deepColor, bg: secondary.bg });
+    }
+  }
+
+  const MIN = 3.0; // WCAG AA for large text / buttons
+  for (const p of pairings) {
+    if (!p.text || !p.bg) continue;
+    const ratio = contrast(p.text, p.bg);
+    if (ratio < MIN) {
+      fail(
+        `Button contrast too low (WCAG AA): ${p.label} has ${p.text} text on ${p.bg} background = ${ratio.toFixed(2)}:1 (need >= ${MIN}:1 at rest). Legible only on hover is not enough.`
+      );
+    }
+  }
+})();
+
+// ---------------------------------------------------------------------
 // Report
 // ---------------------------------------------------------------------
 console.log("\n=== BUILD VALIDATION REPORT ===\n");

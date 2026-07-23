@@ -59,6 +59,20 @@ Runs once per client, immediately after Phase 4, before Phase 5.
      changes — those shouldn't change contrast ratios (contrast is a
      function of color, not weight), but confirm rather than assume,
      especially if a client's real brand colors are introduced later.
+   - **Button text colour must never be overridable by a section-context
+     link rule.** A blanket dark-band rule like `.section-deep a { color:#fff }`
+     out-specifies `.btn-secondary`'s own text colour and renders a
+     white-background button white-on-white at rest (visible only on
+     `:hover`, where the hover rule wins) — a real shipped bug. Scope any
+     "make links light on the dark band" rule to exclude buttons, e.g.
+     `.section-deep a:not(.btn) { color:#fff }`, so every button keeps its
+     own legible colour pairing in every section context. `scripts/
+     validate.js` enforces this: it computes the resting-state contrast of
+     each button variant against its background *including the colour it
+     would inherit inside `.section-deep`*, and hard-fails below WCAG AA
+     (3:1 for buttons). The check is the durable backstop — this CSS
+     (`main.css`) is generated fresh per client, so the guarantee lives in
+     the shared validator, not in any one client's stylesheet.
 3. Implement this as a single stylesheet at `/site/assets/css/main.css`,
    linked identically from every page's `<head>` (a plain `<link
    rel="stylesheet">` reference — no build step needed to share one static
