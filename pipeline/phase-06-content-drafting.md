@@ -104,6 +104,28 @@ placeholder (no invented review data), homepage-linked priority sections
 trust/credentials section, GBP embed placeholder, 6–8 FAQs (same
 `<section id="faq">` wrapper convention as above), final CTA.
 
+**Homepage H1 — head term wrapped in real differentiators, never the bare
+string.** The homepage H1 must keep the primary category and the geo-target
+as an intact, title-matching head term (e.g. `Plumber in Westchester County,
+NY`), but it must not ship as that bare category+location string on its own —
+that reads as a slug, not a headline. Wrap it into one fuller, compelling
+line by prepending one or two of *this client's actual* differentiators
+pulled from the intake's USP/trust-signal list — e.g. `Your Licensed, Insured
+Plumber in Westchester County, NY`. Rules:
+- **Only real, intake-authorized differentiators.** Licensed, insured, locally
+  owned, same-day, upfront pricing, "over 15 years" — whatever the intake
+  actually lists. Never invent or generalize (no "best," "trusted,"
+  "affordable," "#1," no 24/7 unless the intake says so, no tenure or credential
+  the intake didn't authorize). If the intake gives no usable differentiator,
+  keep the head term and add only the client's real name/locality framing —
+  don't manufacture one.
+- **Keep the head term intact and contiguous** so it still matches the title
+  tag and reads for SEO — prepend adjectives, don't reorder "Plumber in
+  Westchester County, NY" into fragments.
+- **One or two differentiators, not the whole list.** The remaining USPs
+  already live in the subheadline and the trust badges directly below the H1 —
+  don't stack four adjectives into the H1 or duplicate the subhead.
+
 **Homepage-linked priority sections, specifically**: these are the site's
 premium real estate — the homepage-linked picks from Phase 3's priority
 tiers — and each one gets a full-page-width section of its own, stacked

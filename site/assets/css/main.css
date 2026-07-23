@@ -195,8 +195,6 @@ p { margin: 0 0 var(--sp-4); max-width: var(--measure); }
   border-bottom: 2px solid transparent;
 }
 .site-nav a:hover { color: #fff; border-bottom-color: #fff; }
-.header-cta { white-space: nowrap; }
-
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
@@ -209,6 +207,17 @@ p { margin: 0 0 var(--sp-4); max-width: var(--measure); }
   box-shadow: var(--shadow-sm);
   transition: transform var(--speed) ease, box-shadow var(--speed) ease,
               background-color var(--speed) ease;
+  /* Sizing is content/padding-driven — never a fixed width. These four
+     guards keep a button's label INSIDE its edges no matter how long the
+     text or how tight the container: cap the box at its container width,
+     let it shrink as a flex item, allow the label to wrap to a second
+     line, and break a single over-long token instead of spilling out.
+     Do NOT reintroduce `white-space: nowrap` on any button (it forces the
+     label to overflow rather than wrap — the exact bug this prevents). */
+  max-width: 100%;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 .btn-primary { background: var(--accent); color: #fff; }
 .btn-primary:hover { background: var(--accent-dark); color: #fff; }
@@ -252,7 +261,7 @@ p { margin: 0 0 var(--sp-4); max-width: var(--measure); }
   background: radial-gradient(circle, rgba(178,60,7,0.10) 0%, transparent 62%);
   pointer-events: none;
 }
-.hero h1 { max-width: 20ch; }
+.hero h1 { max-width: 24ch; }
 .hero .lead { font-size: var(--fs-md); max-width: 46ch; }
 
 /* Feature image framing (Phase 4a): rounded, elevated, subtly ringed. This is

@@ -92,6 +92,24 @@ Runs once per client, immediately after Phase 4, before Phase 5.
      (3:1 for buttons). The check is the durable backstop — this CSS
      (`main.css`) is generated fresh per client, so the guarantee lives in
      the shared validator, not in any one client's stylesheet.
+   - **Button sizing is content/padding-driven — never a fixed width, and the
+     label always stays inside the button's edges.** The base `.btn` class
+     sizes itself from its own padding + text (`display:inline-flex` +
+     `padding`), never a hard `width`/`min-width`. That alone is not enough:
+     a long label, a tight flex container, or a longer business name on a CTA
+     can still push text past the button's edges. Build these four guards into
+     the base `.btn` rule as standing defaults so it holds for *any* label at
+     *any* width: `max-width:100%` (never wider than its container),
+     `min-width:0` (a flex-item button may shrink so its content wraps instead
+     of forcing overflow), `white-space:normal` (the label wraps to a second
+     line rather than spilling out), and `overflow-wrap:break-word` (a single
+     over-long token breaks instead of overflowing). **Never put
+     `white-space:nowrap` on a button** (header CTA included) — it forces the
+     label to overflow its box rather than wrap, which is exactly the shipped
+     "button text spilling off its edges" bug this prevents. Any per-context
+     button styling (header CTA, hero CTA row, dark-band CTA) inherits this
+     base rule; don't reintroduce a fixed width or `nowrap` to "tidy up" one
+     placement.
 3. Implement this as a single stylesheet at `/site/assets/css/main.css`,
    linked identically from every page's `<head>` (a plain `<link
    rel="stylesheet">` reference — no build step needed to share one static
