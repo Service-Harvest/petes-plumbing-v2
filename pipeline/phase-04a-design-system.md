@@ -21,10 +21,29 @@ Runs once per client, immediately after Phase 4, before Phase 5.
    produces a serviceable but generic result on its own. Build to this
    quality bar by default, regardless of how much aesthetic direction the
    intake provides:
-   - **Spacing**: don't stop at a cramped scale. Include a generous
-     top-tier spacing value (roughly 3.5–5.5rem, ideally `clamp()`-based so
-     it scales with viewport) for section vertical padding — flat 2–2.5rem
-     section padding reads as dated/cramped on a modern marketing site.
+   - **Spacing**: don't stop at a cramped scale. Keep a generous top-tier
+     spacing value (roughly 3.5–5.5rem `clamp()`-based) as your ONE unit of
+     vertical rhythm — but apply **half of it** as each full-bleed section's
+     top+bottom padding, so the gap BETWEEN two adjacent sections totals one
+     unit, not two. Every section padding both sides at the full value doubles
+     up at each boundary (~7–11rem) and reads as a broken gap, especially where
+     backgrounds fail to alternate. Half-unit per side, alternating
+     backgrounds, is the fix.
+   - **The floor is not the target — reach past generic by default.** The
+     baseline below (consistent tokens + WCAG AA) produces a *serviceable but
+     bland* result on its own, and with thin intake aesthetic direction it will
+     regress straight to that floor unless you deliberately push further. Build
+     these in as defaults, not extras, since they cost nothing at runtime
+     (pure CSS, no webfonts, no requests): **(a)** a short accent "eyebrow" bar
+     above each content-section `<h2>` (`::before`, no markup); **(b)** an
+     accent top-border on cards plus a real hover lift; **(c)** actual image
+     framing (radius + soft shadow + faint ring) applied to hero/feature
+     images via the `hero-media` band — a defined framing style that never
+     gets applied is the most common way this regresses; **(d)** a hero that
+     is more than a flat gradient — layer a faint CSS dot/grid pattern and a
+     soft off-screen accent glow behind the content; **(e)** a display-size
+     type jump (larger, tighter-tracked `h1`/`h2`) while staying on the system
+     font stack. None of this requires leaving plain static HTML.
    - **Container width**: ~1200–1320px for the structural container is a
      reasonable modern default (vs. older ~1140px conventions), paired with
      a `clamp()`-based side padding so it breathes on ultra-wide screens

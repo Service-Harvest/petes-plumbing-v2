@@ -736,6 +736,56 @@ if (sitemapUrls === null) {
 })();
 
 // ---------------------------------------------------------------------
+// Section background alternation + hero-image framing — hard fail
+// ---------------------------------------------------------------------
+// Two design-regression backstops:
+//  (1) No two ADJACENT full-bleed bands in <main> may share the same background
+//      (plain vs. section-alt vs. section-deep). Doubled same-colour padding
+//      reads as a random dead gap — this was the actual root cause of the
+//      "excessive spacing" bug, introduced when a section-insertion skipped the
+//      alternation check.
+//  (2) Every hero LCP image (`fetchpriority="high"`) must sit inside a
+//      `.hero-media` band, so the defined image-framing style is actually
+//      applied — an "unused defined style" can't silently happen again.
+for (const file of walkHtmlFiles(SITE_DIR)) {
+  const url = relUrl(file);
+  if (url === "/404.html") continue;
+  const html = readFile(file);
+  const mainMatch = html.match(/<main id="main">([\s\S]*?)<\/main>/);
+  if (!mainMatch) continue;
+  const main = mainMatch[1];
+
+  // (1) adjacency
+  const seq = [];
+  for (const m of main.matchAll(/<(?:section|nav)\s+class="([^"]*)"/g)) {
+    const cls = m[1];
+    const toks = cls.split(/\s+/);
+    let bg;
+    if (toks.includes("section-deep")) bg = "deep";
+    else if (cls === "hero") bg = "hero";
+    else if (toks.includes("section") || toks.includes("hero")) bg = toks.includes("section-alt") ? "alt" : "plain";
+    else continue; // not a full-bleed band
+    seq.push(bg);
+  }
+  for (let i = 0; i < seq.length - 1; i++) {
+    if (seq[i] === seq[i + 1]) {
+      fail(`Two adjacent full-bleed sections share the same "${seq[i]}" background on ${url} (position ${i}) — backgrounds must alternate so the doubled section padding doesn't read as a dead gap.`);
+    }
+  }
+
+  // (2) hero-image framing
+  for (const img of main.matchAll(/<img\b[^>]*fetchpriority="high"[^>]*>/g)) {
+    // the enclosing band must carry the hero-media framing class
+    const before = main.slice(0, img.index);
+    const lastSection = before.lastIndexOf("<section");
+    const sectionOpen = before.slice(lastSection).match(/<section\s+class="([^"]*)"/);
+    if (!sectionOpen || !sectionOpen[1].split(/\s+/).includes("hero-media")) {
+      fail(`Hero LCP image on ${url} is not inside a .hero-media band — its defined framing (radius/shadow) would render as a flat rectangle.`);
+    }
+  }
+}
+
+// ---------------------------------------------------------------------
 // Report
 // ---------------------------------------------------------------------
 console.log("\n=== BUILD VALIDATION REPORT ===\n");

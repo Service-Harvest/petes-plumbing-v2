@@ -50,9 +50,10 @@
   --fs-base: 1.0625rem;
   --fs-md:   1.1875rem;
   --fs-lg:   1.375rem;
-  --fs-xl:   clamp(1.5rem,  1.2rem + 1.4vw, 2rem);
-  --fs-2xl:  clamp(1.875rem, 1.4rem + 2.2vw, 2.75rem);
-  --fs-3xl:  clamp(2.25rem, 1.6rem + 3.2vw, 3.5rem);
+  --fs-xl:   clamp(1.55rem, 1.2rem + 1.5vw, 2.1rem);
+  --fs-2xl:  clamp(1.95rem, 1.4rem + 2.5vw, 3rem);
+  --fs-3xl:  clamp(2.4rem, 1.6rem + 3.8vw, 4rem);
+  --fs-eyebrow: 0.8125rem;
 
   /* Spacing */
   --sp-1: 0.25rem;
@@ -62,7 +63,11 @@
   --sp-5: 1.5rem;
   --sp-6: 2rem;
   --sp-7: 2.75rem;
-  --sp-8: clamp(3.5rem, 2.2rem + 4vw, 5.5rem);  /* section rhythm */
+  --sp-8: clamp(3.5rem, 2.2rem + 4vw, 5.5rem);  /* generous single unit */
+  /* Single-rhythm section padding: HALF of --sp-8. Each full-bleed section
+     pads top+bottom by this, so the gap BETWEEN two adjacent sections totals
+     ~one --sp-8 unit (2 x half) instead of two full units doubling up. */
+  --section-y: clamp(1.85rem, 1.1rem + 2.4vw, 2.9rem);
 
   /* Layout */
   --container: 1280px;
@@ -140,7 +145,7 @@ p { margin: 0 0 var(--sp-4); max-width: var(--measure); }
 
 /* Full-bleed section rhythm: the background lives on the <section> itself so
    it runs edge-to-edge, preventing a "boxed" look on wide viewports. */
-.section { padding-block: var(--sp-8); }
+.section { padding-block: var(--section-y); }
 .section-alt  { background: var(--bg-alt); }
 .section-deep { background: var(--bg-deep); color: #fff; }
 .section-deep h1, .section-deep h2, .section-deep h3 { color: #fff; }
@@ -229,26 +234,76 @@ p { margin: 0 0 var(--sp-4); max-width: var(--measure); }
 
 /* ---------- Hero ---------- */
 .hero {
-  background: linear-gradient(180deg, var(--brand-tint) 0%, var(--bg) 100%);
+  position: relative;
+  isolation: isolate;
   padding-block: var(--sp-8);
+  /* Layered: a faint brand dot-grid over a soft diagonal brand wash — pure
+     CSS, no image requests, no render-blocking cost. */
+  background:
+    radial-gradient(var(--brand-tint) 1.4px, transparent 1.4px) 0 0 / 22px 22px,
+    linear-gradient(155deg, var(--brand-tint) 0%, #eef5f8 45%, var(--bg) 100%);
+}
+.hero::after {
+  /* soft accent glow, bottom-right, behind content */
+  content: "";
+  position: absolute; z-index: -1;
+  right: -6%; bottom: -30%;
+  width: 40rem; height: 40rem; max-width: 70vw;
+  background: radial-gradient(circle, rgba(178,60,7,0.10) 0%, transparent 62%);
+  pointer-events: none;
 }
 .hero h1 { max-width: 20ch; }
-.hero .lead { font-size: var(--fs-md); }
-.hero-media img {
+.hero .lead { font-size: var(--fs-md); max-width: 46ch; }
+
+/* Feature image framing (Phase 4a): rounded, elevated, subtly ringed. This is
+   what turns a flat full-width rectangle into a deliberate design element.
+   Applied via the `.hero-media` band class the assembly step wraps every hero
+   image in — validate.js confirms every page actually uses it. */
+.hero-media img,
+.grid-2 img {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
+  outline: 1px solid rgba(11, 79, 108, 0.10);
+  outline-offset: -1px;
+  transition: transform var(--speed) ease, box-shadow var(--speed) ease;
 }
+.hero-media img:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg), 0 22px 48px rgba(11,40,55,0.16); }
+
+/* ---------- Section headings: accent eyebrow bar ----------
+   A short accent rule above each content-section H2 — a cheap, modern
+   "eyebrow" that gives sections a deliberate identity instead of a bare
+   heading. Pure CSS ::before, no markup or text injected. Excluded from the
+   TOC nav and the dark CTA bands (which use .cta-title, not h2). */
+.content > .container > h2 { position: relative; }
+.content > .container > h2::before {
+  content: "";
+  display: block;
+  width: 2.75rem; height: 4px;
+  margin-bottom: var(--sp-4);
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+}
+.section-deep .content > .container > h2::before,
+.section-deep > .container > h2::before { background: #fff; opacity: 0.9; }
+.cta-band .cta-title { position: relative; }
 
 /* ---------- Cards ---------- */
 .card {
+  position: relative;
   background: var(--bg);
   border: 1px solid var(--line);
+  border-top: 3px solid var(--brand);
   border-radius: var(--radius-lg);
   padding: var(--sp-5);
   box-shadow: var(--shadow-sm);
-  transition: transform var(--speed) ease, box-shadow var(--speed) ease;
+  transition: transform var(--speed) ease, box-shadow var(--speed) ease,
+              border-top-color var(--speed) ease;
 }
-.card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-top-color: var(--accent);
+}
 .card h3 { margin-bottom: var(--sp-2); }
 .card p { font-size: var(--fs-sm); color: var(--muted); margin-bottom: var(--sp-3); }
 .card-link { font-weight: 700; font-size: var(--fs-sm); text-decoration: none; }

@@ -287,7 +287,27 @@ combine into a single file:
    with no `src` or `alt` yet. Phase 7 generates the image and writes its
    alt text together, in the same step (alt text describes what was
    actually generated, not a guess made before the image exists), then
-   fills in this exact slot.
+   fills in this exact slot. **The hero/LCP image slot's `<section>` must
+   carry the `hero-media` class** (`<section class="section hero-media">`),
+   which is what applies Phase 4a's image framing (radius/shadow) — an
+   unclassed image renders as a flat full-width rectangle. `scripts/
+   validate.js` hard-fails any `fetchpriority="high"` hero image not inside a
+   `.hero-media` band, so a defined framing style can't silently go unused.
+
+**Two structural rules `scripts/validate.js` enforces as hard fails — get
+them right at assembly time, and re-verify them after ANY later change to
+section structure or order (Phase 8 QA, a Phase 14 edit):**
+- **Backgrounds must alternate.** No two adjacent full-bleed bands in
+  `<main>` may share the same background (plain vs. `section-alt` vs.
+  `section-deep`). Two same-background sections in a row turn the doubled
+  section padding into a dead gap that reads as "excessive/broken spacing."
+  This bug's real-world cause was exactly a section-insertion that skipped
+  re-checking alternation — so treat "did I just add, remove, or reorder a
+  section?" as an automatic trigger to re-verify the whole page's background
+  sequence, not just the sections you touched.
+- **Exactly 5 main content H2 sections** (see the earlier structure rules),
+  with the TOC as a `<nav class="toc">` and CTA-band headings as
+  `<p class="cta-title">`, so only the five content `<h2>`s are counted.
 
 Write this to `/site/[slug]/index.html` (or `/site/index.html` for the
 homepage, `/site/services/index.html` for the hub, etc.), following the
